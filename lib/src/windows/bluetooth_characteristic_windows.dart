@@ -74,9 +74,9 @@ class BluetoothCharacteristicWindows extends BluetoothCharacteristic {
             serviceId: serviceUuid.str128,
             characteristicId: characteristicUuid.str128,
           ),
-          FlutterBluePlusWindows._charReadWriteStream
-              .where((e) => e.$1 == _key)
-              .map((e) => e.$2)
+          // FlutterBluePlusWindows._charReadWriteStream
+          //     .where((e) => e.$1 == _key)
+          //     .map((e) => e.$2)
         ],
       )
           .map((p) => <int>[...p])
@@ -93,9 +93,9 @@ class BluetoothCharacteristicWindows extends BluetoothCharacteristic {
             serviceId: serviceUuid.str128,
             characteristicId: characteristicUuid.str128,
           ),
-          FlutterBluePlusWindows._charReadWriteStream
-              .where((e) => e.$1 == _key)
-              .map((e) => e.$2)
+          // FlutterBluePlusWindows._charReadWriteStream
+          //     .where((e) => e.$1 == _key)
+          //     .map((e) => e.$2)
         ],
       ).map((p) => <int>[...p]).asBroadcastStream();
 
@@ -109,6 +109,9 @@ class BluetoothCharacteristicWindows extends BluetoothCharacteristic {
       serviceId: serviceUuid.str128,
       characteristicId: characteristicUuid.str128,
     );
+
+    print("WinBle read - ${value.toString()}");
+
     FlutterBluePlusWindows._charReadWriteStreamController.add((_key, value));
     FlutterBluePlusWindows._lastChrs[remoteId]?[_key] = value;
     return value;
@@ -126,6 +129,7 @@ class BluetoothCharacteristicWindows extends BluetoothCharacteristic {
       writeWithResponse:
           !withoutResponse, // propertiesWinBle.writeWithoutResponse ?? false,
     );
+    print("WinBle write - ${value.toString()}");
     FlutterBluePlusWindows._charReadWriteStreamController.add((_key, value));
     FlutterBluePlusWindows._lastChrs[remoteId]?[_key] = value;
   }
